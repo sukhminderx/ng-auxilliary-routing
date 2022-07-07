@@ -1,10 +1,30 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 
-const routes: Routes = [];
+const authRoute = {
+  path: 'auth',
+  outlet: 'dialog',
+  loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+};
+
+const homeRoute = {
+  path: '',
+  component: HomeComponent,
+};
+
+const routes: Routes = [
+  homeRoute,
+  authRoute,
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '/',
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

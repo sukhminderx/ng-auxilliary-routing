@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `
+    <router-outlet></router-outlet>
+    <router-outlet name="dialog"></router-outlet>
+  `,
 })
-export class AppComponent {
-  title = 'ng-auxillary-routes';
-}
+export class AppComponent {}
